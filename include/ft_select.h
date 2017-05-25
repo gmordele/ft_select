@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 23:18:35 by gmordele          #+#    #+#             */
-/*   Updated: 2017/05/25 02:08:29 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/05/25 15:42:42 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <termios.h>
 
 void			init_termios(void);
-struct termios	save_termios(struct termios *save);
-void			err_quit(char *error);
+void			err_exit(char *error);
+void			restore_termios(void);
 
 #endif

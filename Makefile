@@ -6,7 +6,7 @@
 #    By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/17 00:00:01 by gmordele          #+#    #+#              #
-#    Updated: 2017/05/25 01:47:50 by gmordele         ###   ########.fr        #
+#    Updated: 2017/05/25 16:34:47 by gmordele         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -16,8 +16,8 @@ CC			=	gcc
 
 CFLAGS		=	-Wall -Werror -Wextra
 
-SRC			=	main.c			init_termios.c		save_termios.c		\
-				err_quit.c
+SRC			=	main.c					init_termios.c				err_exit.c		\
+				restore_termios.c
 
 OBJ			=	$(SRC:%.c=%.o)
 
@@ -43,7 +43,7 @@ mklib		:
 	make -C $(DEST_LIB) 
 
 clean		:
-	rm -f $(OBJ) $(OBJ)
+	rm -f $(OBJ)
 	make clean -C $(DEST_LIB)
 
 fclean		:	clean

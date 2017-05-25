@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 23:15:41 by gmordele          #+#    #+#             */
-/*   Updated: 2017/05/24 23:42:09 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/05/25 16:33:52 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ int		main(int argc, char *argv[])
 {
 	(void)argc;
 	(void)argv;
-	STDIN_FILENO;
+	init_termios();
+//	sleep(10);
+	while (1);
+//	restore_termios();
 	return (0);
 }

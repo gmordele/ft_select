@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   save_termios.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/24 23:15:41 by gmordele          #+#    #+#             */
-/*   Updated: 2017/05/24 23:42:09 by gmordele         ###   ########.fr       */
+/*   Created: 2017/05/25 01:29:13 by gmordele          #+#    #+#             */
+/*   Updated: 2017/05/25 02:07:56 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <termcap.h>
 #include <termios.h>
-#include <unistd.h>
-#include "ft_select.h"
-#include "libft.h"
+#include <stdlib.h>
 
-int		main(int argc, char *argv[])
+struct termios	save_termios(struct termios *save)
 {
-	(void)argc;
-	(void)argv;
-	STDIN_FILENO;
-	return (0);
+	static struct termios	saved;
+
+	if (save != NULL)
+		saved = *save;
+	return (saved);
 }

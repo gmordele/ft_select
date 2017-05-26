@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   err_exit.c                                         :+:      :+:    :+:   */
+/*   get_winsize.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/25 01:48:17 by gmordele          #+#    #+#             */
-/*   Updated: 2017/05/26 01:01:17 by gmordele         ###   ########.fr       */
+/*   Created: 2017/05/26 00:39:15 by gmordele          #+#    #+#             */
+/*   Updated: 2017/05/26 00:43:57 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <termios.h>
-#include <stdlib.h>
+#include <sys/ioctl.h>
 #include <unistd.h>
 #include "ft_select.h"
-#include "libft.h"
 
-void	err_exit(char *error)
+struct winsize	get_winsize(void)
 {
-	extern struct termios	g_saved_termios;
-	extern int				g_is_saved;
+	struct winsize	size;
 
-	ft_dprintf(2, "%s\n", error);
-	restore_term();
-	exit(EXIT_FAILURE);
+	if (ioctl(STDIN_FILENO, TIOCGWINSZ, &size) < 0)
+		err_exit("Error ioctil");
+	return (size);
 }

@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   err_exit.c                                         :+:      :+:    :+:   */
+/*   init_termcap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/25 01:48:17 by gmordele          #+#    #+#             */
-/*   Updated: 2017/05/26 01:01:17 by gmordele         ###   ########.fr       */
+/*   Created: 2017/05/25 17:34:05 by gmordele          #+#    #+#             */
+/*   Updated: 2017/05/26 02:11:27 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <termios.h>
+#include <term.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include "ft_select.h"
 #include "libft.h"
 
-void	err_exit(char *error)
+void	init_termcap(void)
 {
-	extern struct termios	g_saved_termios;
-	extern int				g_is_saved;
+	char			*term_type;
+	struct winsize	size;
+	char			*str;
 
-	ft_dprintf(2, "%s\n", error);
-	restore_term();
-	exit(EXIT_FAILURE);
+	if ((term_type = getenv("TERM")) == NULL)
+		err_exit("Error getenv");
+	if (tgetent(NULL, term_type) <= 0)
+		err_exit("Error tgetent");
+	size = get_winsize();
+	str = tgetstr("ti", NULL);
+	tputs(str, size.ws_row, tputc);
+	str = tgetstr("vi", NULL);
+	tputs(str, 1, tputc);
 }

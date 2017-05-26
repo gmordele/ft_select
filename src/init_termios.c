@@ -6,25 +6,21 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/25 00:15:31 by gmordele          #+#    #+#             */
-/*   Updated: 2017/05/25 16:33:21 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/05/25 17:04:27 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <termios.h>
-#include <term.h>
 #include <unistd.h>
-#include <stdlib.h>
 #include "ft_select.h"
 
-struct termios	saved_termios;
-int				is_saved = 0;
-
-//void			ft_putc()
+struct termios	g_saved_termios;
+int				g_is_saved = 0;
 
 static void		save_termios(struct termios saved)
 {
-	saved_termios = saved;
-	is_saved = 1;
+	g_saved_termios = saved;
+	g_is_saved = 1;
 }
 
 void			init_termios(void)
@@ -45,7 +41,4 @@ void			init_termios(void)
 	if ((buf.c_lflag & (ECHO | ICANON)) || buf.c_cc[VMIN] != 1
 		|| buf.c_cc[VTIME] != 0)
 		err_exit("Error tcgetattr");
-//	tputs(tgetstr("ti", NULL), 0, ft_putc);
-	char *term = getenv("TERM");
-	tgetent(NULL, term);
 }

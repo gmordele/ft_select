@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   err_exit.c                                         :+:      :+:    :+:   */
+/*   print_word.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/25 01:48:17 by gmordele          #+#    #+#             */
-/*   Updated: 2017/05/26 01:01:17 by gmordele         ###   ########.fr       */
+/*   Created: 2017/05/26 01:37:51 by gmordele          #+#    #+#             */
+/*   Updated: 2017/05/26 02:10:44 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <termios.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include "ft_select.h"
+#include <term.h>
 #include "libft.h"
+#include "ft_select.h"
 
-void	err_exit(char *error)
+void	print_word(char *word, int len, int col, int row)
 {
-	extern struct termios	g_saved_termios;
-	extern int				g_is_saved;
+	char	*str;
+	int		word_len;
 
-	ft_dprintf(2, "%s\n", error);
-	restore_term();
-	exit(EXIT_FAILURE);
+	(void)len;
+	str = tgetstr("cm", NULL);
+	tputs(tgoto(str, col, row), 1, tputc);
+	word_len = ft_printf("%s", word);
+	while (++word_len <= len)
+		ft_printf(" ");
 }

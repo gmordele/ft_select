@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/25 00:15:31 by gmordele          #+#    #+#             */
-/*   Updated: 2017/05/25 17:04:27 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/05/27 16:25:41 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,27 @@
 #include <unistd.h>
 #include "ft_select.h"
 
-struct termios	g_saved_termios;
-int				g_is_saved = 0;
-
-static void		save_termios(struct termios saved)
+static void		save_termios(t_info *info, struct termios buf)
 {
-	g_saved_termios = saved;
-	g_is_saved = 1;
+	info->saved_termios = buf;
+	info->is_saved = 1;
 }
 
-void			init_termios(void)
+void			init_termios(t_info *info)
 {
 	struct termios	buf;
-	struct termios	saved;
 
-	if (tcgetattr(STDIN_FILENO, &saved) < 0)
-		err_exit("Error tcgetattr");
-	save_termios(saved);
-	buf = saved;
+	if (tcgetattr(STDIN_FILENO, &buf) < 0)
+		err_exit(info, "Error tcgetattr");
+	save_termios(info, buf);
 	buf.c_lflag &= ~(ECHO | ICANON);
 	buf.c_cc[VMIN] = 1;
 	buf.c_cc[VTIME] = 0;
+	buf.c_cc[VSTOP] = _PC_VDISABLE;
 	if (tcsetattr(STDIN_FILENO, TCSANOW, &buf) < 0)
-		err_exit("Error tcsetattr");
+		err_exit(info, "Error tcsetattr");
 	tcgetattr(STDIN_FILENO, &buf);
 	if ((buf.c_lflag & (ECHO | ICANON)) || buf.c_cc[VMIN] != 1
 		|| buf.c_cc[VTIME] != 0)
-		err_exit("Error tcgetattr");
+		err_exit(info, "Error tcgetattr");
 }

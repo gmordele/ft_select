@@ -1,31 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_termcap.c                                     :+:      :+:    :+:   */
+/*   print_screen.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/25 17:34:05 by gmordele          #+#    #+#             */
-/*   Updated: 2017/05/27 12:18:52 by gmordele         ###   ########.fr       */
+/*   Created: 2017/05/27 00:58:05 by gmordele          #+#    #+#             */
+/*   Updated: 2017/05/27 13:40:08 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <term.h>
-#include <stdlib.h>
 #include "ft_select.h"
-#include "libft.h"
 
-void	init_termcap(t_info *info)
+void 	print_scr(t_info *info)
 {
-	char			*term_type;
-	char			*str;
-
-	if ((term_type = getenv("TERM")) == NULL)
-		err_exit(info, "Error getenv");
-	if (tgetent(NULL, term_type) <= 0)
-		err_exit(info, "Error tgetent");
-	str = tgetstr("ti", NULL);
-	tputs(str, info->row, tputc);
-	str = tgetstr("vi", NULL);
-	tputs(str, 1, tputc);
+	(void)info;
 }
+

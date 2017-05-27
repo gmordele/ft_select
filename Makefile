@@ -6,7 +6,7 @@
 #    By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/17 00:00:01 by gmordele          #+#    #+#              #
-#    Updated: 2017/05/26 02:02:02 by gmordele         ###   ########.fr        #
+#    Updated: 2017/05/27 01:02:55 by gmordele         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -16,9 +16,11 @@ CC			=	gcc
 
 CFLAGS		=	-Wall -Werror -Wextra
 
-SRC			=	main.c					init_termios.c				err_exit.c		\
-				restore_term.c			init_termcap.c				pressed_key.c	\
-				get_winsize.c			tputc.c						print_word.c
+SRC			=	main.c					init_termios.c				err_exit.c			\
+				restore_term.c			init_termcap.c				pressed_key.c		\
+				get_winsize.c			tputc.c						print_word.c		\
+				print_word_cur.c		make_arg_lst.c				remove_arg_lst.c	\
+				sta_info.c				print_scr.c
 
 OBJ			=	$(SRC:%.c=%.o)
 

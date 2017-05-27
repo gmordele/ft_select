@@ -6,22 +6,16 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 23:15:41 by gmordele          #+#    #+#             */
-/*   Updated: 2017/05/26 02:07:44 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/05/27 17:41:20 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdlib.h>
 #include "ft_select.h"
 #include "libft.h"
 
-static void print_screen(void)
-{
-	print_word("salut", 7, 0, 0);
-	print_word("ca va ?", 7, 0, 1);
-	print_word("1111111", 7, 0, 1);
-}
-
-static void	main_loop(void)
+static  void	main_loop(t_info *info)
 {
 	ssize_t	n;
 	char	buf[1024];
@@ -32,21 +26,54 @@ static void	main_loop(void)
 	while (!exit)
 	{
 		if ((n = read(STDIN_FILENO, buf, 1024)) < 0)
-			err_exit("Error read");
+			err_exit(info, "Error read");
 		key = pressed_key(n, buf);
 		if (key == KEY_ESC)
 			exit = 1;
 	}
 }
 
-int			main(int argc, char *argv[])
+static void		get_len(t_info *info)
 {
-	(void)argc;
-	(void)argv;
-	init_termios();
-	init_termcap();
-	print_screen();
-	main_loop();
-	restore_term();
+	t_arg_lst	*p;
+	int			len;
+
+	p = info->arg_lst;
+	info->len = ft_strlen(p->arg);
+	p = p->next;
+	w`hile (p->rank != 0)
+	{
+		len = ft_strlen(p->arg);
+		info->len = (len > info->len) ? len : info->len;
+		p = p->next;
+	}
+}
+
+static void		init_info(t_info *info)
+{
+	info->is_saved = 0;
+	get_winsize(info);
+	get_len(info);
+	info->words_line = (info->len <= info->col) ?
+		1 + (info->col - info->len) / (info->len + 1) : 0;
+}
+
+int				main(int argc, char *argv[])
+{
+	t_info info;
+
+	if (argc < 2 || argc >= 10000)
+	{
+		ft_dprintf(2, "Error arguments\n");	
+		exit(EXIT_FAILURE);
+	}
+	make_arg_lst(&info, argc, argv);
+	init_info(&info);
+	sta_info(&info);
+	init_termios(&info);
+//	init_termcap(&info);
+//	print_scr(&info);
+	main_loop(&info);
+	restore_term(&info);
 	return (0);
 }

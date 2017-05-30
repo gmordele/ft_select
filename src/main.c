@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 23:15:41 by gmordele          #+#    #+#             */
-/*   Updated: 2017/05/27 17:41:20 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/05/30 14:05:17 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void		get_len(t_info *info)
 	p = info->arg_lst;
 	info->len = ft_strlen(p->arg);
 	p = p->next;
-	w`hile (p->rank != 0)
+	while (p->rank != 0)
 	{
 		len = ft_strlen(p->arg);
 		info->len = (len > info->len) ? len : info->len;

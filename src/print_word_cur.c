@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 14:51:19 by gmordele          #+#    #+#             */
-/*   Updated: 2017/05/26 14:57:35 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/05/31 21:30:54 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include "ft_select.h"
 
-void	print_word_cur_uns(char *word, int len, int col, int row)
+void	print_word_cur_uns(char *word, int len, int row, int col)
 {
 	char	*str;
 	int		word_len;
@@ -32,7 +32,7 @@ void	print_word_cur_uns(char *word, int len, int col, int row)
 	ft_printf("{RES}");
 }
 
-void	print_word_cur_sel(char *word, int len, int col, int row)
+void	print_word_cur_sel(char *word, int len, int row, int col)
 {
 	char	*str;
 	int		word_len;

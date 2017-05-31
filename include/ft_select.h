@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 23:18:35 by gmordele          #+#    #+#             */
-/*   Updated: 2017/05/27 16:31:46 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/05/31 18:15:55 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ typedef struct	s_info
 	int				row;
 	t_arg_lst		*arg_lst;
 	int				state;
-	int				words_line;
+	int				words_row;
+	int				words_col;
 }				t_info;
 
 void			init_termios(t_info *info);

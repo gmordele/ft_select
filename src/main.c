@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 23:15:41 by gmordele          #+#    #+#             */
-/*   Updated: 2017/05/31 19:14:57 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/01 16:43:59 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,15 @@ static  void	main_loop(t_info *info)
 {
 	ssize_t	n;
 	char	buf[1024];
-	int		exit;
 	int		key;
 
-	exit = 0;
-	while (!exit)
+	while (!info->exit)
 	{
 		if ((n = read(STDIN_FILENO, buf, 1024)) < 0)
 			err_exit(info, "Error read");
 		key = pressed_key(n, buf);
 		if (key == KEY_ESC)
-			exit = 1;
-
+			info->exit = 1;
 	}
 }
 
@@ -52,12 +49,14 @@ static void		get_len(t_info *info)
 
 static void		init_info(t_info *info)
 {
+	info->exit = 0;
 	info->is_saved = 0;
 	get_winsize(info);
 	get_len(info);
 	info->words_row = (info->len <= info->col) ?
 		1 + (info->col - info->len) / (info->len + 1) : 0;
 	info->words_col	= (info->row > 2) ? info->row - 2 : 0;
+	info->cur_pos = 2;
 }
 
 int				main(int argc, char *argv[])
@@ -77,5 +76,6 @@ int				main(int argc, char *argv[])
 	print_scr(&info);
 	main_loop(&info);
 	restore_term(&info);
+	ft_printf("%d\n", info.words_row);
 	return (0);
 }

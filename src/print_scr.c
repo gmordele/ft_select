@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/27 00:58:05 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/01 16:50:12 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/02 16:45:17 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,39 +31,26 @@ static	void	print_word(t_arg_lst *arg_lst, t_info *info, int row, int col)
 	}
 }
 
-static	void	red_screen(t_info *info)
+static void		update_row_col(int *row, int *col, t_info *info)
 {
-	int	row;
-	int	col;
-
-	col = 0;
-	row = 0;
-	ft_printf("{BG_RED}");
-	while (row < info->row)
+	if (*row == info->row - 2)
 	{
-		while (col++ < info->col)
-			ft_printf(" ");
-		ft_printf("\n");
-		++row;
+		*row = 0;
+		*col += info->len + 1;
 	}
-	ft_printf("{RES}");
 }
 
-static	void	print_words(t_info *info)
+static	void	print_words(t_info *info, t_arg_lst *first)
 {
 	int			row;
 	int			col;
 	t_arg_lst	*arg_lst;
 
-	arg_lst = info->arg_lst;
+	arg_lst = first;
 	print_word(arg_lst, info, 0, 0);
 	col = 0;
 	row = 1;
-	if (row == info->row - 2)
-	{
-		row = 0;
-		col += info->len + 1;
-	}
+	update_row_col(&row, &col, info);
 	arg_lst= arg_lst->next;
 	while (col <= info->col - info->len)
 	{
@@ -72,22 +59,34 @@ static	void	print_words(t_info *info)
 			print_word(arg_lst, info, row, col);
 			arg_lst = arg_lst->next;
 		}
-		else 
+		else
 			print_word_uns(" ", info->len, row, col);
 		++row;
-		if (row == info->row - 2)
-		{
-			row = 0;
-			col += info->len + 1;
-		}
+		update_row_col(&row, &col, info);
 	}
 }
 
-void 		print_scr(t_info *info)
+static void		print_page(t_info *info, int page)
 {
-	if (info->words_row == 0 || info->words_col == 0)
+	int			first_rank;
+	t_arg_lst	*first;
+
+	first_rank = page * info->words_page;
+	if ((first = get_arg(info, first_rank)) == NULL)
+		err_exit(info, "Error get_arg");
+	print_words(info, first);
+}
+
+void 			print_scr(t_info *info)
+{
+	int page;
+
+	if (info->words_page == 0)
 		red_screen(info);
 	else
-		print_words(info);
+	{
+		page = info->cur_pos / info->words_page;
+		print_page(info, page);
+	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 23:15:41 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/01 16:43:59 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/02 17:10:03 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,13 @@ static  void	main_loop(t_info *info)
 	{
 		if ((n = read(STDIN_FILENO, buf, 1024)) < 0)
 			err_exit(info, "Error read");
+		/*
+		for (int i = 0; i < n; ++i)
+			ft_printf("%d ", buf[i]);
+		ft_printf("\n");
+		*/
 		key = pressed_key(n, buf);
-		if (key == KEY_ESC)
-			info->exit = 1;
+		handle_key(info, key);
 	}
 }
 
@@ -56,7 +60,8 @@ static void		init_info(t_info *info)
 	info->words_row = (info->len <= info->col) ?
 		1 + (info->col - info->len) / (info->len + 1) : 0;
 	info->words_col	= (info->row > 2) ? info->row - 2 : 0;
-	info->cur_pos = 2;
+	info->words_page = info->words_col * info->words_row;
+	info->cur_pos = 0;
 }
 
 int				main(int argc, char *argv[])

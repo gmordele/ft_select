@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/25 19:12:30 by gmordele          #+#    #+#             */
-/*   Updated: 2017/05/25 19:24:39 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/02 17:06:45 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,18 @@ static int	arrow_key(char *buf)
 	return (-1);
 }
 
-static int	del_key(char *buf)
+static int	spe_key(char *buf)
 {
-	if (buf[0] == 27
-		&& buf[1] == 91
-		&& buf[2] == 51
+	if (buf[0] == 27 && buf[1] == 91
 		&& buf[3] == 126)
-		return (KEY_DEL);
+	{
+		if (buf[2] == 51)
+			return (KEY_DEL);
+		if (buf[2] == 54)
+			return (KEY_PAGE_DOWN);
+		if (buf[2] == 53)
+			return (KEY_PAGE_UP);
+	}
 	return (-1);
 }
 
@@ -59,6 +64,6 @@ int			pressed_key(int n, char *buf)
 	if (n == 3)
 		return (arrow_key(buf));
 	if (n == 4)
-		return (del_key(buf));
+		return (spe_key(buf));
 	return (-1);
 }

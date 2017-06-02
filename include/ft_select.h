@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 23:18:35 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/01 16:54:51 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/02 17:08:59 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # define KEY_DEL 		7
 # define KEY_BACKSPACE	8
 # define KEY_CTRL_S		9
+# define KEY_PAGE_UP	10
+# define KEY_PAGE_DOWN	11
 
 # define SELECTED		100
 # define UNSELECTED		101
@@ -57,6 +59,7 @@ typedef struct	s_info
 	int				state;
 	int				words_row;
 	int				words_col;
+	int				words_page;
 }				t_info;
 
 
@@ -76,5 +79,8 @@ void			make_arg_lst(t_info *info, int argc, char **argv);
 void			remove_arg_lst(t_arg_lst **first, int rank);
 t_info			*sta_info(t_info *info);
 void			print_scr(t_info *info);
+t_arg_lst		*get_arg(t_info *info, int rank);
+void			red_screen(t_info *info);
+void			handle_key(t_info *info, int key);
 
 #endif

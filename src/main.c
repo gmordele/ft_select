@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 23:15:41 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/02 17:10:03 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/03 17:26:07 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ static void		init_info(t_info *info)
 	info->words_col	= (info->row > 2) ? info->row - 2 : 0;
 	info->words_page = info->words_col * info->words_row;
 	info->cur_pos = 0;
+	get_n_args(info);
 }
 
 int				main(int argc, char *argv[])
@@ -81,6 +82,5 @@ int				main(int argc, char *argv[])
 	print_scr(&info);
 	main_loop(&info);
 	restore_term(&info);
-	ft_printf("%d\n", info.words_row);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 23:18:35 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/02 17:08:59 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/03 19:27:42 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct	s_info
 	int				words_row;
 	int				words_col;
 	int				words_page;
+	int				n_args;
 }				t_info;
 
 
@@ -82,5 +83,11 @@ void			print_scr(t_info *info);
 t_arg_lst		*get_arg(t_info *info, int rank);
 void			red_screen(t_info *info);
 void			handle_key(t_info *info, int key);
+void			handle_page(t_info *info, int key);
+void			get_n_args(t_info *info);
+void			handle_arrow(t_info *info, int key);
+void			cur_move_up(t_info *info);
+void			cur_move_down(t_info *info);
+void			move_cur(t_info *info, int pos_cur1, int pos_cur2);
 
 #endif

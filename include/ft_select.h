@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 23:18:35 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/03 19:27:42 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/04 18:58:17 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,8 @@ void			handle_arrow(t_info *info, int key);
 void			cur_move_up(t_info *info);
 void			cur_move_down(t_info *info);
 void			move_cur(t_info *info, int pos_cur1, int pos_cur2);
+void			cur_move_left(t_info *info);
+void			cur_move_right(t_info *info);
+int				same_page(t_info *info, int pos1, int pos2);
 
 #endif

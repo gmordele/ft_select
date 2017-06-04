@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_arrow.c                                     :+:      :+:    :+:   */
+/*   cur_move_left.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/03 17:54:02 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/04 16:43:44 by gmordele         ###   ########.fr       */
+/*   Created: 2017/06/04 18:36:37 by gmordele          #+#    #+#             */
+/*   Updated: 2017/06/04 18:36:51 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "ft_select.h"
 
-void	handle_arrow(t_info *info, int key)
+void	cur_move_left(t_info *info)
 {
-	if (key == KEY_UP)
-		cur_move_up(info);
-	else if (key == KEY_DOWN)
-		cur_move_down(info);
-	else if (key == KEY_LEFT)
-		cur_move_left(info);
-	else if (key == KEY_RIGHT)
-		cur_move_right(info);
+	(void)info;
 }

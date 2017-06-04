@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 23:15:41 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/03 17:26:07 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/04 14:43:11 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include "ft_select.h"
 #include "libft.h"
+#include "locale.h"
 
 static  void	main_loop(t_info *info)
 {
@@ -49,6 +50,7 @@ static void		get_len(t_info *info)
 		info->len = (len > info->len) ? len : info->len;
 		p = p->next;
 	}
+	++info->len;
 }
 
 static void		init_info(t_info *info)
@@ -69,6 +71,7 @@ int				main(int argc, char *argv[])
 {
 	t_info info;
 
+	setlocale(LC_ALL, "");
 	if (argc < 2 || argc >= 10000)
 	{
 		ft_dprintf(2, "Error arguments\n");	

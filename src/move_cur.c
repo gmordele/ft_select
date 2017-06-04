@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/03 18:54:23 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/03 19:46:07 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/04 16:44:26 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void		move_cur(t_info *info, int pos_cur1, int pos_cur2)
 	int	col1;
 	int	col2;
 
+	if (pos_cur1 == pos_cur2)
+		return ;
 	row1 = pos_cur1 % info->words_col;
 	col1 = ((pos_cur1 / info->words_col) % info->words_row) * (info->len + 1);
 	row2 = pos_cur2 % info->words_col;

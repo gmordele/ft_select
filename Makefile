@@ -6,7 +6,7 @@
 #    By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/17 00:00:01 by gmordele          #+#    #+#              #
-#    Updated: 2017/06/03 19:26:50 by gmordele         ###   ########.fr        #
+#    Updated: 2017/06/04 18:57:56 by gmordele         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -22,8 +22,9 @@ SRC			=	main.c					init_termios.c				err_exit.c			\
 				print_word_cur.c		make_arg_lst.c				remove_arg_lst.c	\
 				sta_info.c				print_scr.c					get_arg.c			\
 				red_screen.c			handle_key.c				get_n_args.c		\
-				handle_page.c			handle_arrow.c				cur_move.c			\
-				move_cur.c
+				handle_page.c			handle_arrow.c				move_cur.c			\
+				cur_move_right.c		cur_move_left.c				cur_move_up.c		\
+				cur_move_down.c			same_page.c
 
 OBJ			=	$(SRC:%.c=%.o)
 

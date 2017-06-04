@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 01:37:51 by gmordele          #+#    #+#             */
-/*   Updated: 2017/05/31 21:30:07 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/04 14:40:21 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	print_word_sel(char *word, int len, int col, int row)
 	str = tgetstr("cm", NULL);
 	tputs(tgoto(str, row, col), 1, tputc);
 	ft_printf("{BLA}{BG_WHI}");
+	ft_printf(" ");
 	word_len = ft_printf("%s", word);
 	while (++word_len <= len)
 		ft_printf(" ");
@@ -35,7 +36,8 @@ void	print_word_uns(char *word, int len, int col, int row)
 
 	str = tgetstr("cm", NULL);
 	tputs(tgoto(str, row, col), 1, tputc);
-	ft_printf("{WHI}{BG_BLA}");
+	ft_printf("{BG_BLA}{WHI}");
+	ft_printf(" ", 8594);
 	word_len = ft_printf("%s", word);
 	while (++word_len <= len)
 		ft_printf(" ");

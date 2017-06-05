@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/25 19:12:30 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/05 12:01:51 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/05 18:31:21 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ static int	single_char(char c)
 		return (KEY_ESC);
 	if (c == 127)
 		return (KEY_BACKSPACE);
+	if (c == 19)
+		return (KEY_CTRL_S);
+	if (c >= 32 && c <= 126)
+		return (c);
 	return (-1);
 }
 

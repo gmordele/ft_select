@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 23:18:35 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/05 11:20:55 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/05 18:55:43 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@
 # define KEY_PAGE_UP	10
 # define KEY_PAGE_DOWN	11
 
-# define SELECTED		100
-# define UNSELECTED		101
+# define SELECTED		200
+# define UNSELECTED		201
 
-# define STATE_NORMAL	200
-# define STATE_SEARCH	201
-# define STATE_BLOCK_NO	202
-# define STATE_BLOCK_SE	203
+# define STATE_NORMAL	300
+# define STATE_SEARCH	301
+# define STATE_BLOCK_NO	302
+# define STATE_BLOCK_SE	303
 
 typedef struct	s_arg_lst
 {
@@ -62,6 +62,8 @@ typedef struct	s_info
 	int				words_page;
 	int				n_args;
 	int				selected_args;
+	char			*search_buf;
+	int				search_cur;
 }				t_info;
 
 
@@ -97,5 +99,8 @@ void			handle_space(t_info *info);
 void			print_foot(t_info *info);
 void			handle_del(t_info *info);
 void			remove_last(t_info *info);
+void			switch_search_mode(t_info *info);
+void			show_search_bar(t_info *info);
+void			handle_search_char(t_info *info, char c);
 
 #endif

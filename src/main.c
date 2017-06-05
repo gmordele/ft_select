@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 23:15:41 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/05 16:55:29 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/05 18:59:41 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static  void	main_loop(t_info *info)
 		for (int i = 0; i < n; ++i)
 			ft_printf("%d ", buf[i]);
 		ft_printf("\n");
-		*/
+		//*/
 		key = pressed_key(n, buf);
 		handle_key(info, key);
 	}
@@ -67,6 +67,8 @@ static void		init_info(t_info *info)
 	get_n_args(info);
 	info->selected_args = 0;
 	info->state = STATE_NORMAL;
+	info->search_cur = 0;
+	info->search_buf = (char *)malloc(sizeof(char) * info->len);
 }
 
 int				main(int argc, char *argv[])
@@ -82,10 +84,13 @@ int				main(int argc, char *argv[])
 	make_arg_lst(&info, argc, argv);
 	init_info(&info);
 	sta_info(&info);
+
 	init_termios(&info);
+	//*
 	init_termcap(&info);
 	print_scr(&info);
-	main_loop(&info);
+	//*/
+	(void)main_loop(&info);
 	restore_term(&info);
 	return (0);
 }

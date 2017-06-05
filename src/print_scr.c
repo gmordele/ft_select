@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/27 00:58:05 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/05 16:19:53 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/05 17:54:01 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,8 @@ void 			print_scr(t_info *info)
 {
 	int page;
 
-	if (info->words_page == 0 || info->col < 41)
+	if (info->words_page == 0 || info->col < 41
+		|| info->col < info->len + 7)
 	{
 		red_screen(info);
 		if (info->state == STATE_NORMAL)
@@ -98,6 +99,8 @@ void 			print_scr(t_info *info)
 		page = info->cur_pos / info->words_page;
 		print_page(info, page);
 		print_foot(info);
+		if (info->state == STATE_SEARCH)
+			show_search_bar(info);
 	}
 }
 

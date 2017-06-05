@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   red_screen.c                                       :+:      :+:    :+:   */
+/*   handle_search_char.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/02 15:47:39 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/05 17:32:19 by gmordele         ###   ########.fr       */
+/*   Created: 2017/06/05 18:28:48 by gmordele          #+#    #+#             */
+/*   Updated: 2017/06/05 18:57:24 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_select.h"
+#include <term.h>
 #include "libft.h"
+#include "ft_select.h"
 
-void	red_screen(t_info *info)
+void	handle_search_char(t_info *info, char c)
 {
-	int i;
-	int lim;
+	int pos_cur;
 
-	ft_printf("{BG_RED}");
-	lim = info->row * info->col;
-	i = 0;
-	while (i++ < lim)
-		ft_printf(" ");
-	ft_printf("{RES}");
+	pos_cur = info->search_cur + 8;
+	tputs(tgoto(tgetstr("cm", NULL),pos_cur , info->row - 1), 1, tputc);
+	ft_printf("{BG_WHI}{BLA}");
+	if (c == KEY_BACKSPACE)
+		ft_printf("%c", 127);
+	else
+		ft_printf("%c", c);
+	if (c == KEY_BACKSPACE)
+		--(info->search_cur);
+	else
+		++(info->search_cur);
+	ft_printf("{RED}");
 }

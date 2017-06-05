@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 17:07:34 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/05 17:20:28 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/05 18:55:14 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,16 @@ static void	handle_key_normal(t_info *info, int key)
 		handle_space(info);
 	else if (key == KEY_DEL || key == KEY_BACKSPACE)
 		handle_del(info);
+	else if (key == KEY_CTRL_S)
+		switch_search_mode(info);
 }
 
 static void	handle_key_search(t_info *info, int key)
 {
-	(void)info;
-	(void)key;
+	if (key == KEY_ESC)
+		switch_search_mode(info);
+	if ((key >= 32 && key <= 126) || key == KEY_BACKSPACE)
+		handle_search_char(info, key);
 }
 
 static void	handle_key_blocked(t_info *info, int key)

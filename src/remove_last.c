@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/05 11:20:21 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/05 11:25:13 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/05 15:25:13 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void		remove_last(t_info *info)
 	{
 		--(info->cur_pos);
 		--(info->n_args);
+		remove_arg_lst(info, info->cur_pos + 1);
 		print_scr(info);
 	}
 	else
@@ -37,7 +38,7 @@ void		remove_last(t_info *info)
 		remove_word(info, info->cur_pos);
 		--(info->cur_pos);
 		--(info->n_args);
+		remove_arg_lst(info, info->cur_pos + 1);
 		print_foot(info);
 	}
-	remove_arg_lst(info, info->cur_pos + 1);
 }

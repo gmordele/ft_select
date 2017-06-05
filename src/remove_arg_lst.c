@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 17:08:00 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/05 10:35:56 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/05 15:22:18 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,16 @@ static void 		remove_first(t_arg_lst **first)
 		down_rank(next);
 }
 
+static void			update_selected(t_info *info, int rank)
+{
+	t_arg_lst	*arg_lst;
+
+	if ((arg_lst = get_arg(info, rank)) == NULL)
+		err_exit(info, "Error get_arg");
+	if (arg_lst->state == SELECTED)
+		--(info->selected_args);
+}
+
 static t_arg_lst	*get_ranked(t_arg_lst *first, int rank)
 {
 	t_arg_lst	*p;
@@ -69,8 +79,10 @@ void				remove_arg_lst(t_info *info, int rank)
 	first = &(info->arg_lst);
 	if (*first == NULL || (*first)->prev->rank < rank)
 		return ;
+	update_selected(info, rank);
 	if (rank == 0)
 	{
+		
 		remove_first(first);
 		return ;
 	}

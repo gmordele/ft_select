@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/27 00:58:05 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/05 10:26:03 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/05 15:05:04 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void 			print_scr(t_info *info)
 {
 	int page;
 
-	if (info->words_page == 0)
+	if (info->words_page == 0 || info->col < 41)
 		red_screen(info);
 	else
 	{

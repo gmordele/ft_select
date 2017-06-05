@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/05 10:08:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/05 10:13:52 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/05 15:17:21 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,13 @@ void	handle_space(t_info *info)
 		arg_lst->state = UNSELECTED;
 		--(info->selected_args);
 		cur_move_down(info);
+		print_foot(info);
 	}
 	else
 	{
 		arg_lst->state = SELECTED;
 		++(info->selected_args);
 		cur_move_down(info);
+		print_foot(info);
 	}
 }

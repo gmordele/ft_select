@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 23:15:41 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/05 10:14:25 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/05 16:55:29 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ static void		init_info(t_info *info)
 	info->cur_pos = 0;
 	get_n_args(info);
 	info->selected_args = 0;
+	info->state = STATE_NORMAL;
 }
 
 int				main(int argc, char *argv[])

@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/04 18:34:59 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/04 19:39:46 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/05 09:42:45 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ static void cur_move_right_small(t_info *info)
 	info->cur_pos = new_pos;
 }
 
-int		last_col(t_info *info, int pos)
+int			last_col(t_info *info, int pos)
 {
 	return ((same_page(info, pos, info->n_args - 1)
 		&& pos / info->words_col
 			 == (info->n_args - 1) / info->words_col));
 }
 
-void	cur_move_right(t_info *info)
+void		cur_move_right(t_info *info)
 {
 	int	new_pos;
 

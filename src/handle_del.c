@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_screen.c                                     :+:      :+:    :+:   */
+/*   handle_del.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/27 00:58:05 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/05 10:26:03 by gmordele         ###   ########.fr       */
+/*   Created: 2017/06/05 10:29:13 by gmordele          #+#    #+#             */
+/*   Updated: 2017/06/05 11:55:41 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
-#include "libft.h"
+
 
 static	void	print_word(t_arg_lst *arg_lst, t_info *info, int row, int col)
 {
@@ -40,16 +40,18 @@ static void		update_row_col(int *row, int *col, t_info *info)
 	}
 }
 
-static	void	print_words(t_info *info, t_arg_lst *first)
+static	void	print_words(t_info *info, t_arg_lst *pos)
 {
 	int			row;
 	int			col;
 	t_arg_lst	*arg_lst;
 
-	arg_lst = first;
-	print_word(arg_lst, info, 0, 0);
-	col = 0;
-	row = 1;
+	arg_lst = pos;
+	row = info->cur_pos % info->words_col;
+	col = ((info->cur_pos / info->words_col) % info->words_row)
+		* (info->len + 1);
+	print_word(arg_lst, info, row, col);
+	++row;
 	update_row_col(&row, &col, info);
 	arg_lst= arg_lst->next;
 	while (col <= info->col - info->len)
@@ -66,28 +68,27 @@ static	void	print_words(t_info *info, t_arg_lst *first)
 	}
 }
 
-static void		print_page(t_info *info, int page)
+static void	remove(t_info *info)
 {
-	int			first_rank;
-	t_arg_lst	*first;
+	t_arg_lst *pos;
 
-	first_rank = page * info->words_page;
-	if ((first = get_arg(info, first_rank)) == NULL)
+	remove_arg_lst(info, info->cur_pos);
+	--(info->n_args);
+	if ((pos = get_arg(info, info->cur_pos)) == NULL)
 		err_exit(info, "Error get_arg");
-	print_words(info, first);
+	print_words(info, pos);
+	print_foot(info);
 }
 
-void 			print_scr(t_info *info)
+void		handle_del(t_info *info)
 {
-	int page;
-
-	if (info->words_page == 0)
-		red_screen(info);
+	if (info->n_args <= 1)
+		info->exit = 1;
 	else
 	{
-		page = info->cur_pos / info->words_page;
-		print_page(info, page);
-		print_foot(info);
+		if (info->cur_pos == info->n_args - 1)
+			remove_last(info);
+		else
+			remove(info);
 	}
 }
-

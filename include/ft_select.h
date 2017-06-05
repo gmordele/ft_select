@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 23:18:35 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/04 18:58:17 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/05 11:20:55 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct	s_info
 	int				words_col;
 	int				words_page;
 	int				n_args;
+	int				selected_args;
 }				t_info;
 
 
@@ -77,7 +78,7 @@ void			print_word_foot(char *word, int len, int row, int col);
 void			print_word_cur_uns(char *word, int len, int row, int col);
 void			print_word_cur_sel(char *word, int len, int row, int col);
 void			make_arg_lst(t_info *info, int argc, char **argv);
-void			remove_arg_lst(t_arg_lst **first, int rank);
+void			remove_arg_lst(t_info *info, int rank);
 t_info			*sta_info(t_info *info);
 void			print_scr(t_info *info);
 t_arg_lst		*get_arg(t_info *info, int rank);
@@ -92,5 +93,9 @@ void			move_cur(t_info *info, int pos_cur1, int pos_cur2);
 void			cur_move_left(t_info *info);
 void			cur_move_right(t_info *info);
 int				same_page(t_info *info, int pos1, int pos2);
+void			handle_space(t_info *info);
+void			print_foot(t_info *info);
+void			handle_del(t_info *info);
+void			remove_last(t_info *info);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 23:18:35 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/05 18:55:43 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/06 19:13:03 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # define KEY_RIGHT 		2
 # define KEY_LEFT 		3
 # define KEY_RETURN 	4
-# define KEY_SPACE 		5
+# define KEY_SPACE 		32
 # define KEY_ESC 		6
 # define KEY_DEL 		7
 # define KEY_BACKSPACE	8
@@ -102,5 +102,8 @@ void			remove_last(t_info *info);
 void			switch_search_mode(t_info *info);
 void			show_search_bar(t_info *info);
 void			handle_search_char(t_info *info, char c);
+void			search_for(t_info *info);
+void			search_for_next(t_info *info);
+void			handle_search_next(t_info *info);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 14:51:19 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/05 10:16:14 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/06 17:37:11 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	print_word_cur_uns(char *word, int len, int row, int col)
 	ft_printf("%C", 8594);
 	str = tgetstr("us", NULL);
 	tputs(str, 1, tputc);
-	word_len = ft_printf("%s", word);
+	word_len = ft_printf("%s", word) + 1;
 	str = tgetstr("ue", NULL);
 	tputs(str, 1, tputc);
 	while (++word_len <= len)
@@ -44,7 +44,7 @@ void	print_word_cur_sel(char *word, int len, int row, int col)
 	ft_printf("%C", 8594);
 	str = tgetstr("us", NULL);
 	tputs(str, 1, tputc);
-	word_len = ft_printf("%s", word);
+	word_len = ft_printf("%s", word) + 1;
 	str = tgetstr("ue", NULL);
 	tputs(str, 1, tputc);
 	while (++word_len <= len)

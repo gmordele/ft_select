@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 23:15:41 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/05 18:59:41 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/06 19:39:45 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,9 @@ static void		init_info(t_info *info)
 	info->selected_args = 0;
 	info->state = STATE_NORMAL;
 	info->search_cur = 0;
-	info->search_buf = (char *)malloc(sizeof(char) * info->len);
+	if((info->search_buf = (char *)malloc(sizeof(char) * info->len)) == NULL)
+		err_exit(info, "Error malloc");
+	ft_bzero(info->search_buf, info->len);
 }
 
 int				main(int argc, char *argv[])

@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 17:07:34 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/05 18:55:14 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/06 19:13:07 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,10 @@ static void	handle_key_search(t_info *info, int key)
 {
 	if (key == KEY_ESC)
 		switch_search_mode(info);
-	if ((key >= 32 && key <= 126) || key == KEY_BACKSPACE)
+	else if ((key >= 32 && key <= 126) || key == KEY_BACKSPACE)
 		handle_search_char(info, key);
+	else if (key == KEY_CTRL_S)
+		handle_search_next(info);
 }
 
 static void	handle_key_blocked(t_info *info, int key)
@@ -50,9 +52,9 @@ void		handle_key(t_info *info, int key)
 	if (info->state == STATE_BLOCK_NO
 		|| info->state == STATE_BLOCK_SE)
 		handle_key_blocked(info, key);
-	if (info->state == STATE_NORMAL)
+	else if (info->state == STATE_NORMAL)
 		handle_key_normal(info, key);
-	if (info->state == STATE_SEARCH)
+	else if (info->state == STATE_SEARCH)
 		handle_key_search(info, key);
 }
 

@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/03 18:54:23 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/05 11:02:18 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/07 10:45:30 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ static void	unselect_cur(t_info *info, int pos, int row, int col)
 	if ((arg_lst = get_arg(info, pos)) == NULL)
 		err_exit(info, "Error get_arg");
 	if (arg_lst->state == SELECTED)
-		print_word_sel(arg_lst->arg, info->len, row, col);
+		print_word_sel(info, arg_lst->arg, row, col);
 	else
-		print_word_uns(arg_lst->arg, info->len, row, col);
+		print_word_uns(info, arg_lst->arg, row, col);
 }
 
 static void	select_cur(t_info *info, int pos, int row, int col)
@@ -33,9 +33,9 @@ static void	select_cur(t_info *info, int pos, int row, int col)
 	if ((arg_lst = get_arg(info, pos)) == NULL)
 		err_exit(info, "Error get_arg");
 	if (arg_lst->state == SELECTED)
-		print_word_cur_sel(arg_lst->arg, info->len, row, col);
+		print_word_cur_sel(info, arg_lst->arg, row, col);
 	else
-		print_word_cur_uns(arg_lst->arg, info->len, row, col);
+		print_word_cur_uns(info, arg_lst->arg, row, col);
 }
 
 void		move_cur(t_info *info, int pos_cur1, int pos_cur2)

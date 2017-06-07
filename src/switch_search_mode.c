@@ -19,11 +19,11 @@ void		show_search_bar(t_info *info)
 	int i;
 
 	tputs(tgoto(tgetstr("cm", NULL),0 , info->row - 1), 1, tputc);
-	ft_printf("{BG_WHI}{BLA}");
-	i = ft_printf("search: %s", info->search_buf);
+	ft_dprintf(info->fd, "{BG_WHI}{BLA}");
+	i = ft_dprintf(info->fd, "search: %s", info->search_buf);
 	while (i++ < info->col)
-		ft_printf(" ");
-	ft_printf("{RES}");
+		ft_dprintf(info->fd, " ");
+	ft_dprintf(info->fd, "{RES}");
 }
 
 static void	hide_search_bar(t_info *info)
@@ -32,10 +32,10 @@ static void	hide_search_bar(t_info *info)
 
 	tputs(tgoto(tgetstr("cm", NULL),0 , info->row - 1), 1, tputc);
 	i = 0;
-	ft_printf("{BG_BLA}");
+	ft_dprintf(info->fd, "{BG_BLA}");
 	while (i++ < info->col)
-		ft_printf(" ");
-	ft_printf("{RES}");
+		ft_dprintf(info->fd, " ");
+	ft_dprintf(info->fd, "{RES}");
 }
 
 void		switch_search_mode(t_info *info)

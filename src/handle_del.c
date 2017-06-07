@@ -6,28 +6,27 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/05 10:29:13 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/05 11:55:41 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/07 10:46:38 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
-
 
 static	void	print_word(t_arg_lst *arg_lst, t_info *info, int row, int col)
 {
 	if (arg_lst->rank != info->cur_pos)
 	{
 		if (arg_lst->state == UNSELECTED)
-			print_word_uns(arg_lst->arg, info->len, row, col);
+			print_word_uns(info, arg_lst->arg, row, col);
 		else
-			print_word_sel(arg_lst->arg, info->len, row, col);
+			print_word_sel(info, arg_lst->arg,  row, col);
 	}
 	else
 	{
 		if (arg_lst->state == UNSELECTED)
-			print_word_cur_uns(arg_lst->arg, info->len, row, col);
+			print_word_cur_uns(info, arg_lst->arg, row, col);
 		else
-			print_word_cur_sel(arg_lst->arg, info->len, row, col);
+			print_word_cur_sel(info, arg_lst->arg, row, col);
 	}
 }
 
@@ -62,7 +61,7 @@ static	void	print_words(t_info *info, t_arg_lst *pos)
 			arg_lst = arg_lst->next;
 		}
 		else
-			print_word_uns(" ", info->len, row, col);
+			print_word_uns(info, " ", row, col);
 		++row;
 		update_row_col(&row, &col, info);
 	}

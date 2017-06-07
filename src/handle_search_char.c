@@ -18,12 +18,12 @@ void	handle_search_char(t_info *info, char c)
 {
 	int pos_cur;
 
-	ft_printf("{BG_WHI}{BLA}");
+	ft_dprintf(info->fd, "{BG_WHI}{BLA}");
 	if (c == KEY_BACKSPACE && info->search_cur > 0)
 	{
 			pos_cur = info->search_cur + 7;
 			tputs(tgoto(tgetstr("cm", NULL),pos_cur , info->row - 1), 1, tputc);
-			ft_printf(" ");
+			ft_dprintf(info->fd, " ");
 			info->search_buf[--(info->search_cur)] = '\0';
 	}
 	else if (c != KEY_BACKSPACE)
@@ -32,11 +32,11 @@ void	handle_search_char(t_info *info, char c)
 		{
 			pos_cur = info->search_cur + 8;
 			tputs(tgoto(tgetstr("cm", NULL),pos_cur , info->row - 1), 1, tputc);
-			ft_printf("%c", c);
+			ft_dprintf(info->fd, "%c", c);
 			info->search_buf[info->search_cur] = c;
 			++(info->search_cur);
 			search_for(info);
 		}
 	}
-	ft_printf("{RES}");
+	ft_dprintf(info->fd, "{RES}");
 }

@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 23:15:41 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/07 10:24:27 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/07 10:50:49 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 			err_exit(info, "Error read");
 		/*
 		for (int i = 0; i < n; ++i)
-			ft_printf("%d ", buf[i]);
-		ft_printf("\n");
+			ft_dprintf(info->fd, "%d ", buf[i]);
+		ft_dprintf(info->fd, "\n");
 		//*/
 		key = pressed_key(n, buf);
 		handle_key(info, key);
@@ -73,6 +73,7 @@ static void		init_info(t_info *info)
 		err_exit(info, "Error malloc");
 	ft_bzero(info->search_buf, info->len);
 	get_valid_fd(info);
+	info->fd = 1;
 }
 
 int				main(int argc, char *argv[])
@@ -88,13 +89,15 @@ int				main(int argc, char *argv[])
 	make_arg_lst(&info, argc, argv);
 	init_info(&info);
 	sta_info(&info);
+	/*
 	int test = ttyslot();
 	ft_dprintf(2, "%s\n", ttyname(2));
 	ft_dprintf(2, "%d\n", test);
-//	init_termios(&info);
-//	init_termcap(&info);
-//	print_scr(&info);
-//	main_loop(&info);
+	*/
+	init_termios(&info);
+	init_termcap(&info);
+	print_scr(&info);
+	main_loop(&info);
 	restore_term(&info);
 	return (0);
 }

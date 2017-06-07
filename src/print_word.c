@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 01:37:51 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/06 17:37:02 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/07 11:00:02 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,32 @@
 #include "libft.h"
 #include "ft_select.h"
 
-void	print_word_sel(char *word, int len, int col, int row)
+void			print_word_uns(t_info *info, char *word, int row, int col)
 {
 	char	*str;
 	int		word_len;
 
 	str = tgetstr("cm", NULL);
-	tputs(tgoto(str, row, col), 1, tputc);
-	ft_printf("{BLA}{BG_WHI}");
-	ft_printf(" ");
-	word_len = ft_printf("%s", word) + 1;
-	while (++word_len <= len)
-		ft_printf(" ");
-	ft_printf("{RES}");
+	tputs(tgoto(str, col, row), 1, tputc);
+	ft_dprintf(info->fd, "{WHI}{BG_BLA}");
+	ft_dprintf(info->fd, " ");
+	word_len = ft_dprintf(info->fd, "%s", word) + 1;
+	while (++word_len <= info->len)
+		ft_dprintf(info->fd, " ");
+	ft_dprintf(info->fd, "{RES}");
 }
 
-void	print_word_uns(char *word, int len, int col, int row)
+void			print_word_sel(t_info *info, char *word, int row, int col)
 {
 	char	*str;
 	int		word_len;
 
 	str = tgetstr("cm", NULL);
-	tputs(tgoto(str, row, col), 1, tputc);
-	ft_printf("{BG_BLA}{WHI}");
-	ft_printf(" ", 8594);
-	word_len = ft_printf("%s", word) + 1;
-	while (++word_len <= len )
-		ft_printf(" ");
-	ft_printf("{RES}");
+	tputs(tgoto(str, col, row), 1, tputc);
+	ft_dprintf(info->fd, "{BLA}{BG_WHI}");
+	ft_dprintf(info->fd, " ");
+	word_len = ft_dprintf(info->fd, "%s", word) + 1;
+	while (++word_len <= info->len)
+		ft_dprintf(info->fd, " ");
+	ft_dprintf(info->fd, "{RES}");
 }

@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/05 11:20:21 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/05 15:25:13 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/07 10:46:58 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	remove_word(t_info *info, int rank)
 	row = rank % info->words_col;
 	col = ((rank / info->words_col) % info->words_row)
 		* (info->len + 1);
-	print_word_uns(" ", info->len, row, col);
+	print_word_uns(info, " ", row, col);
 }
 
 void		remove_last(t_info *info)

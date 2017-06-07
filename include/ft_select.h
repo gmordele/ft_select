@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 23:18:35 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/07 10:29:47 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/07 10:40:15 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,11 @@ void			init_termcap(t_info *info);
 int				pressed_key(int n, char *buf);
 void			get_winsize(t_info *info);
 int				tputc(int c);
-void			print_word_uns(char *word, int len, int row, int col);
-void			print_word_sel(char *word, int len, int row, int col);
-void			print_word_foot(char *word, int len, int row, int col);
-void			print_word_cur_uns(char *word, int len, int row, int col);
-void			print_word_cur_sel(char *word, int len, int row, int col);
+void			print_word_uns(t_info *info, char *word, int row, int col);
+void			print_word_sel(t_info *info, char *word,  int row, int col);
+//void			print_word_foot(t_info *info,char *word, int len, int row, int col);
+void			print_word_cur_uns(t_info *info, char *word, int row, int col);
+void			print_word_cur_sel(t_info *info, char *word, int row, int col);
 void			make_arg_lst(t_info *info, int argc, char **argv);
 void			remove_arg_lst(t_info *info, int rank);
 t_info			*sta_info(t_info *info);

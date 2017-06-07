@@ -18,10 +18,10 @@ void	red_screen(t_info *info)
 	int i;
 	int lim;
 
-	ft_printf("{BG_RED}");
+	ft_dprintf(info->fd, "{BG_RED}");
 	lim = info->row * info->col;
 	i = 0;
 	while (i++ < lim)
-		ft_printf(" ");
-	ft_printf("{RES}");
+		ft_dprintf(info->fd, " ");
+	ft_dprintf(info->fd, "{RES}");
 }

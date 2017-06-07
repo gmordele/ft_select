@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/27 00:58:05 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/05 17:54:01 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/07 11:01:08 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@ static	void	print_word(t_arg_lst *arg_lst, t_info *info, int row, int col)
 	if (arg_lst->rank != info->cur_pos)
 	{
 		if (arg_lst->state == UNSELECTED)
-			print_word_uns(arg_lst->arg, info->len, row, col);
+			print_word_uns(info, arg_lst->arg, row, col);
 		else
-			print_word_sel(arg_lst->arg, info->len, row, col);
+			print_word_sel(info, arg_lst->arg,  row, col);
 	}
 	else
 	{
 		if (arg_lst->state == UNSELECTED)
-			print_word_cur_uns(arg_lst->arg, info->len, row, col);
+			print_word_cur_uns(info, arg_lst->arg, row, col);
 		else
-			print_word_cur_sel(arg_lst->arg, info->len, row, col);
+			print_word_cur_sel(info, arg_lst->arg, row, col);
 	}
 }
 
@@ -40,7 +40,7 @@ static void		update_row_col(int *row, int *col, t_info *info)
 	}
 }
 
-static	void	print_words(t_info *info, t_arg_lst *first)
+static void		print_words(t_info *info, t_arg_lst *first)
 {
 	int			row;
 	int			col;
@@ -60,10 +60,11 @@ static	void	print_words(t_info *info, t_arg_lst *first)
 			arg_lst = arg_lst->next;
 		}
 		else
-			print_word_uns(" ", info->len, row, col);
+			print_word_uns(info, " ", row, col);
 		++row;
 		update_row_col(&row, &col, info);
 	}
+
 }
 
 static void		print_page(t_info *info, int page)
@@ -102,5 +103,6 @@ void 			print_scr(t_info *info)
 		if (info->state == STATE_SEARCH)
 			show_search_bar(info);
 	}
+
 }
 

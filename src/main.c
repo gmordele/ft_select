@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 23:15:41 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/07 10:50:49 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/07 11:43:33 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 	while (!info->exit)
 	{
-		if ((n = read(STDIN_FILENO, buf, 1024)) < 0)
+		if ((n = read(info->fd, buf, 1024)) < 0)
 			err_exit(info, "Error read");
 		/*
 		for (int i = 0; i < n; ++i)
@@ -58,6 +58,7 @@ static void		init_info(t_info *info)
 {
 	info->exit = 0;
 	info->is_saved = 0;
+	get_valid_fd(info);
 	get_winsize(info);
 	get_len(info);
 	info->words_row = (info->len <= info->col) ?
@@ -72,8 +73,6 @@ static void		init_info(t_info *info)
 	if((info->search_buf = (char *)malloc(sizeof(char) * info->len)) == NULL)
 		err_exit(info, "Error malloc");
 	ft_bzero(info->search_buf, info->len);
-	get_valid_fd(info);
-	info->fd = 1;
 }
 
 int				main(int argc, char *argv[])

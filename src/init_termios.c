@@ -24,16 +24,16 @@ void			init_termios(t_info *info)
 {
 	struct termios	buf;
 
-	if (tcgetattr(STDIN_FILENO, &buf) < 0)
+	if (tcgetattr(info->fd, &buf) < 0)
 		err_exit(info, "Error tcgetattr");
 	save_termios(info, buf);
 	buf.c_lflag &= ~(ECHO | ICANON);
 	buf.c_cc[VMIN] = 1;
 	buf.c_cc[VTIME] = 0;
 	buf.c_cc[VSTOP] = _PC_VDISABLE;
-	if (tcsetattr(STDIN_FILENO, TCSANOW, &buf) < 0)
+	if (tcsetattr(info->fd, TCSANOW, &buf) < 0)
 		err_exit(info, "Error tcsetattr");
-	tcgetattr(STDIN_FILENO, &buf);
+	tcgetattr(info->fd, &buf);
 	if ((buf.c_lflag & (ECHO | ICANON)) || buf.c_cc[VMIN] != 1
 		|| buf.c_cc[VTIME] != 0)
 		err_exit(info, "Error tcgetattr");

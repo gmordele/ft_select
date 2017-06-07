@@ -24,6 +24,6 @@ void	restore_term(t_info *info)
 	str = tgetstr("ve", NULL);
 	tputs(str, 1, tputc);
 	if (info->is_saved)
-		if (tcsetattr(STDIN_FILENO, TCSANOW, &info->saved_termios) < 0)
+		if (tcsetattr(info->fd, TCSANOW, &info->saved_termios) < 0)
 			err_exit(info, "Error tcsetattr");
 }

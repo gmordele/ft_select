@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 23:15:41 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/06 19:39:45 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/07 10:24:27 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 #include "libft.h"
 #include "locale.h"
 
-static  void	main_loop(t_info *info)
+
+/*static*/  void	main_loop(t_info *info)
 {
 	ssize_t	n;
 	char	buf[1024];
@@ -71,6 +72,7 @@ static void		init_info(t_info *info)
 	if((info->search_buf = (char *)malloc(sizeof(char) * info->len)) == NULL)
 		err_exit(info, "Error malloc");
 	ft_bzero(info->search_buf, info->len);
+	get_valid_fd(info);
 }
 
 int				main(int argc, char *argv[])
@@ -86,13 +88,13 @@ int				main(int argc, char *argv[])
 	make_arg_lst(&info, argc, argv);
 	init_info(&info);
 	sta_info(&info);
-
-	init_termios(&info);
-	//*
-	init_termcap(&info);
-	print_scr(&info);
-	//*/
-	(void)main_loop(&info);
+	int test = ttyslot();
+	ft_dprintf(2, "%s\n", ttyname(2));
+	ft_dprintf(2, "%d\n", test);
+//	init_termios(&info);
+//	init_termcap(&info);
+//	print_scr(&info);
+//	main_loop(&info);
 	restore_term(&info);
 	return (0);
 }

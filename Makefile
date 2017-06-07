@@ -6,7 +6,7 @@
 #    By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/17 00:00:01 by gmordele          #+#    #+#              #
-#    Updated: 2017/06/06 19:14:33 by gmordele         ###   ########.fr        #
+#    Updated: 2017/06/07 10:29:24 by gmordele         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -27,7 +27,7 @@ SRC			=	main.c					init_termios.c				err_exit.c			\
 				cur_move_down.c			same_page.c					handle_space.c		\
 				print_foot.c			handle_del.c				remove_last.c		\
 				switch_search_mode.c	handle_search_char.c		search_for.c		\
-				handle_search_next.c
+				handle_search_next.c	handle_key_all.c			get_valid_fd.c		\
 
 OBJ			=	$(SRC:%.c=%.o)
 

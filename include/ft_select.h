@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 23:18:35 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/06 19:13:03 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/07 10:29:47 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define KEY_CTRL_S		9
 # define KEY_PAGE_UP	10
 # define KEY_PAGE_DOWN	11
+# define KEY_CTRL_A		12
 
 # define SELECTED		200
 # define UNSELECTED		201
@@ -64,6 +65,7 @@ typedef struct	s_info
 	int				selected_args;
 	char			*search_buf;
 	int				search_cur;
+	int				fd;
 }				t_info;
 
 
@@ -105,5 +107,7 @@ void			handle_search_char(t_info *info, char c);
 void			search_for(t_info *info);
 void			search_for_next(t_info *info);
 void			handle_search_next(t_info *info);
+void			handle_key_all(t_info *info);
+void			get_valid_fd(t_info *info);
 
 #endif

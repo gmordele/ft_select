@@ -6,13 +6,23 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/05 18:28:48 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/06 19:26:45 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/07 12:13:09 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <term.h>
 #include "libft.h"
 #include "ft_select.h"
+
+static void is_found(t_info *info, int result)
+{
+	tputs(tgoto(tgetstr("cm", NULL),8 , info->row - 1), 1, tputc);
+	if (result)
+		ft_dprintf(info->fd, "{BG_WHI}{BLA}%s", info->search_buf);
+	else
+		ft_dprintf(info->fd, "{BG_RED}{BLA}%s", info->search_buf);
+	ft_dprintf(info->fd, "{RES}");
+}
 
 void	handle_search_char(t_info *info, char c)
 {
@@ -25,6 +35,7 @@ void	handle_search_char(t_info *info, char c)
 			tputs(tgoto(tgetstr("cm", NULL),pos_cur , info->row - 1), 1, tputc);
 			ft_dprintf(info->fd, " ");
 			info->search_buf[--(info->search_cur)] = '\0';
+			is_found(info, search_for(info));
 	}
 	else if (c != KEY_BACKSPACE)
 	{
@@ -32,10 +43,9 @@ void	handle_search_char(t_info *info, char c)
 		{
 			pos_cur = info->search_cur + 8;
 			tputs(tgoto(tgetstr("cm", NULL),pos_cur , info->row - 1), 1, tputc);
-			ft_dprintf(info->fd, "%c", c);
 			info->search_buf[info->search_cur] = c;
 			++(info->search_cur);
-			search_for(info);
+			is_found(info, search_for(info));
 		}
 	}
 	ft_dprintf(info->fd, "{RES}");

@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 23:18:35 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/07 11:45:36 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/07 11:59:26 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void			remove_last(t_info *info);
 void			switch_search_mode(t_info *info);
 void			show_search_bar(t_info *info);
 void			handle_search_char(t_info *info, char c);
-void			search_for(t_info *info);
+int				search_for(t_info *info);
 void			search_for_next(t_info *info);
 void			handle_search_next(t_info *info);
 void			handle_key_all(t_info *info);

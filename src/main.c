@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 23:15:41 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/07 11:43:33 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/07 18:06:22 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "locale.h"
 
 
-/*static*/  void	main_loop(t_info *info)
+static  void	main_loop(t_info *info)
 {
 	ssize_t	n;
 	char	buf[1024];

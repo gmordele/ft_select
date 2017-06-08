@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 10:25:22 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/07 11:19:08 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/07 18:29:32 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	get_valid_fd(t_info *info)
 		info->fd = 0;
 	else
 	{
-		if ((name = ttyname(2)) == NULL)
+		if ((name = ttyname(0)) == NULL)
 			err_exit(info, "Error ttyname");
 		if ((info->fd = open(name, O_RDWR)) < 0)
 			err_exit(info, "Error open");

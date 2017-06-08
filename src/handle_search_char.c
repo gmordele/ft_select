@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/05 18:28:48 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/07 12:13:09 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/08 16:46:48 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,17 @@
 static void is_found(t_info *info, int result)
 {
 	tputs(tgoto(tgetstr("cm", NULL),8 , info->row - 1), 1, tputc);
+
 	if (result)
+	{
 		ft_dprintf(info->fd, "{BG_WHI}{BLA}%s", info->search_buf);
+		info->is_found = 1;
+	}
 	else
+	{
 		ft_dprintf(info->fd, "{BG_RED}{BLA}%s", info->search_buf);
+		info->is_found = 0;
+	}
 	ft_dprintf(info->fd, "{RES}");
 }
 

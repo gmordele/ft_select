@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 23:18:35 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/08 12:47:21 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/08 17:18:26 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ typedef struct	s_info
 	char			*search_buf;
 	int				search_cur;
 	int				fd;
+	int				is_found;
 }				t_info;
-
 
 void			init_termios(t_info *info);
 void			err_exit(t_info *info, char *error);

@@ -6,11 +6,13 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/08 10:38:21 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/08 13:02:59 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/08 17:21:58 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <signal.h>
+#include <sys/ioctl.h>
+#include <unistd.h>
 #include "ft_select.h"
 #include "libft.h"
 
@@ -26,11 +28,14 @@ static void		sigint_handler(int sig)
 static void		sigstp_handler(int sig)
 {
 	t_info *info;
+	char	susp;
 
 	(void)sig;
 	info = sta_info(NULL);
+	susp = info->saved_termios.c_cc[VSUSP];
 	if (signal(SIGTSTP, SIG_DFL) == SIG_ERR)	
 		err_exit(info, "Error signal");
+	ioctl(0, TIOCSTI, &susp);
 	restore_term(info);
 	if (signal(SIGTSTP, SIG_DFL) == SIG_ERR)	
 		err_exit(info, "Error signal");
@@ -39,7 +44,6 @@ static void		sigstp_handler(int sig)
 static void		sigcont_handler(int sig)
 {
 	t_info *info;
-
 
 	(void)sig;
 	info = sta_info(NULL);
@@ -53,7 +57,6 @@ static void		sigcont_handler(int sig)
 
 static void		sigwinch_handler(int sig)
 {
-
 	t_info	*info;
 
 	(void)sig;

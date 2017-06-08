@@ -6,7 +6,7 @@
 #    By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/17 00:00:01 by gmordele          #+#    #+#              #
-#    Updated: 2017/06/08 12:47:04 by gmordele         ###   ########.fr        #
+#    Updated: 2017/06/08 17:25:16 by gmordele         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -47,6 +47,7 @@ all 		:	mklib $(NAME)
 
 $(NAME)		:	$(LIBFT) $(OBJ) $(HEADERS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT) -I$(DEST_INC) -I$(DEST_LIB) -ltermcap
+	open ./dark.jpg
 
 %.o			:	$(DEST_SRC)%.c $(HEADERS) $(LIBFT)
 	$(CC) $(CFLAGS) -c $< -o $@ -I$(DEST_INC) -I$(DEST_LIB)

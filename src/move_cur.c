@@ -6,13 +6,12 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/03 18:54:23 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/07 10:45:30 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/08 20:12:50 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "ft_select.h"
-
 
 static void	unselect_cur(t_info *info, int pos, int row, int col)
 {
@@ -44,7 +43,7 @@ void		move_cur(t_info *info, int pos_cur1, int pos_cur2)
 	int	row2;
 	int	col1;
 	int	col2;
-	
+
 	row1 = pos_cur1 % info->words_col;
 	col1 = ((pos_cur1 / info->words_col) % info->words_row) * (info->len + 1);
 	row2 = pos_cur2 % info->words_col;

@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_arg.c                                          :+:      :+:    :+:   */
+/*   change_args.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/02 14:35:32 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/08 19:44:10 by gmordele         ###   ########.fr       */
+/*   Created: 2017/06/08 19:35:17 by gmordele          #+#    #+#             */
+/*   Updated: 2017/06/08 19:41:46 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "ft_select.h"
-
-t_arg_lst	*get_arg(t_info *info, int rank)
+void	change_args(int argc, char **argv)
 {
-	t_arg_lst	*ret;
+	int	i;
+	int j;
 
-	ret = info->arg_lst;
-	if (ret == NULL)
-		return (NULL);
-	if (rank == 0)
-		return (ret);
-	ret = ret->next;
-	while (ret->rank != 0)
+	i = 1;
+	while (i < argc)
 	{
-		if (ret->rank == rank)
-			return (ret);
-		ret = ret->next;
+		j = 0;
+		while (argv[i][j] != '\0')
+		{
+			if (argv[i][j] < 32 || argv[i][j] > 126)
+				argv[i][j] = ' ';
+			++j;
+		}
+		++i;
 	}
-	return (NULL);
 }

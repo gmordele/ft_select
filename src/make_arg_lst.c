@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 14:57:42 by gmordele          #+#    #+#             */
-/*   Updated: 2017/05/27 01:03:52 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/08 20:00:00 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static t_arg_lst	*new_arg(t_info *info, char *arg, t_arg_lst *prev, int rank)
 	return (new);
 }
 
-static void 		add_arg(t_info *info, t_arg_lst **first, char *arg)
+static void			add_arg(t_info *info, t_arg_lst **first, char *arg)
 {
 	t_arg_lst	*p;
 	int			rank;
@@ -48,11 +48,11 @@ static void 		add_arg(t_info *info, t_arg_lst **first, char *arg)
 	p->next = new_arg(info, arg, p, rank);
 }
 
-void			make_arg_lst(t_info *info, int argc, char **argv)
+void				make_arg_lst(t_info *info, int argc, char **argv)
 {
 	int			i;
 	t_arg_lst	*first;
-	t_arg_lst *p;
+	t_arg_lst	*p;
 
 	first = NULL;
 	i = 1;

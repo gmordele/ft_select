@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 23:18:35 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/08 17:29:57 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/08 19:43:36 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int				pressed_key(int n, char *buf);
 void			get_winsize(t_info *info);
 int				tputc(int c);
 void			print_word_uns(t_info *info, char *word, int row, int col);
-void			print_word_sel(t_info *info, char *word,  int row, int col);
+void			print_word_sel(t_info *info, char *word, int row, int col);
 void			print_word_cur_uns(t_info *info, char *word, int row, int col);
 void			print_word_cur_sel(t_info *info, char *word, int row, int col);
 void			make_arg_lst(t_info *info, int argc, char **argv);
@@ -113,5 +113,6 @@ void			init_signals(t_info *info);
 void			clean_exit(t_info *info);
 void			free_args(t_info *info);
 void			clean_scr(t_info *info);
+void			change_args(int argc, char **argv);
 
 #endif

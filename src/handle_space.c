@@ -6,13 +6,11 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/05 10:08:55 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/05 15:17:21 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/08 19:53:57 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
-
-
 
 void	handle_space(t_info *info)
 {

@@ -6,13 +6,13 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 09:56:19 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/07 10:01:39 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/08 19:48:13 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-static void select_all(t_info *info)
+static void	select_all(t_info *info)
 {
 	t_arg_lst *arg_lst;
 
@@ -27,7 +27,7 @@ static void select_all(t_info *info)
 	info->selected_args = info->n_args;
 }
 
-static void unselect_all(t_info *info)
+static void	unselect_all(t_info *info)
 {
 	t_arg_lst *arg_lst;
 

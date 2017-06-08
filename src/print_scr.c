@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/27 00:58:05 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/07 11:01:08 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/08 20:04:47 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static	void	print_word(t_arg_lst *arg_lst, t_info *info, int row, int col)
 		if (arg_lst->state == UNSELECTED)
 			print_word_uns(info, arg_lst->arg, row, col);
 		else
-			print_word_sel(info, arg_lst->arg,  row, col);
+			print_word_sel(info, arg_lst->arg, row, col);
 	}
 	else
 	{
@@ -51,7 +51,7 @@ static void		print_words(t_info *info, t_arg_lst *first)
 	col = 0;
 	row = 1;
 	update_row_col(&row, &col, info);
-	arg_lst= arg_lst->next;
+	arg_lst = arg_lst->next;
 	while (col <= info->col - info->len)
 	{
 		if (arg_lst->rank != 0)
@@ -64,7 +64,6 @@ static void		print_words(t_info *info, t_arg_lst *first)
 		++row;
 		update_row_col(&row, &col, info);
 	}
-
 }
 
 static void		print_page(t_info *info, int page)
@@ -78,7 +77,7 @@ static void		print_page(t_info *info, int page)
 	print_words(info, first);
 }
 
-void 			print_scr(t_info *info)
+void			print_scr(t_info *info)
 {
 	int page;
 
@@ -103,6 +102,4 @@ void 			print_scr(t_info *info)
 		if (info->state == STATE_SEARCH)
 			show_search_bar(info);
 	}
-
 }
-

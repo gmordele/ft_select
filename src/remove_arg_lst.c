@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 17:08:00 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/05 15:22:18 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/08 20:11:19 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void			down_rank(t_arg_lst *ranked)
 	}
 }
 
-static void 		remove_first(t_arg_lst **first)
+static void			remove_first(t_arg_lst **first)
 {
 	t_arg_lst	*next;
 	t_arg_lst	*prev;
@@ -82,7 +82,6 @@ void				remove_arg_lst(t_info *info, int rank)
 	update_selected(info, rank);
 	if (rank == 0)
 	{
-		
 		remove_first(first);
 		return ;
 	}

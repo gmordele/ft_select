@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/08 10:38:21 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/08 18:56:07 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/08 19:58:53 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void		sigint_handler(int sig)
 
 static void		sigstp_handler(int sig)
 {
-	t_info *info;
+	t_info	*info;
 	char	susp;
 
 	(void)sig;
@@ -35,11 +35,11 @@ static void		sigstp_handler(int sig)
 	{
 		info = sta_info(NULL);
 		susp = info->saved_termios.c_cc[VSUSP];
-		if (signal(SIGTSTP, SIG_DFL) == SIG_ERR)	
+		if (signal(SIGTSTP, SIG_DFL) == SIG_ERR)
 			err_exit(info, "Error signal");
 		ioctl(0, TIOCSTI, &susp);
 		restore_term(info);
-		if (signal(SIGTSTP, SIG_DFL) == SIG_ERR)	
+		if (signal(SIGTSTP, SIG_DFL) == SIG_ERR)
 			err_exit(info, "Error signal");
 	}
 }
@@ -52,7 +52,7 @@ static void		sigcont_handler(int sig)
 	if (isatty(1))
 	{
 		info = sta_info(NULL);
-		if (signal(SIGTSTP, sigstp_handler) == SIG_ERR)	
+		if (signal(SIGTSTP, sigstp_handler) == SIG_ERR)
 			err_exit(info, "Error signal");
 		init_termios(info);
 		init_termcap(info);
@@ -80,13 +80,13 @@ void			init_signals(t_info *info)
 	while (sig <= 31)
 	{
 		if (sig != 9 && sig != 17)
-			if (signal(sig, sigint_handler) == SIG_ERR)	
+			if (signal(sig, sigint_handler) == SIG_ERR)
 				err_exit(info, "Error signal");
 		++sig;
 	}
-	if (signal(SIGTSTP, sigstp_handler) == SIG_ERR)	
+	if (signal(SIGTSTP, sigstp_handler) == SIG_ERR)
 		err_exit(info, "Error signal");
-	if (signal(SIGCONT, sigcont_handler) == SIG_ERR)	
+	if (signal(SIGCONT, sigcont_handler) == SIG_ERR)
 		err_exit(info, "Error signal");
 	if (signal(SIGWINCH, sigwinch_handler) == SIG_ERR)
 		err_exit(info, "Error signal");

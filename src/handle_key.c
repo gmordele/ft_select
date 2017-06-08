@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 17:07:34 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/08 17:32:09 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/08 20:08:13 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static void	handle_key_normal(t_info *info, int key)
 	if (key == KEY_ESC)
 		info->exit = 1;
 	else if (key == KEY_PAGE_DOWN || key == KEY_PAGE_UP)
-			handle_page(info, key);
+		handle_page(info, key);
 	else if (key == KEY_UP || key == KEY_DOWN
-			 || key == KEY_LEFT || key == KEY_RIGHT)
+			|| key == KEY_LEFT || key == KEY_RIGHT)
 		handle_arrow(info, key);
 	else if (key == KEY_SPACE)
 		handle_space(info);
@@ -64,4 +64,3 @@ void		handle_key(t_info *info, int key)
 	else if (info->state == STATE_SEARCH)
 		handle_key_search(info, key);
 }
-

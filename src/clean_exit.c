@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   restore_term.c                                     :+:      :+:    :+:   */
+/*   clean_exit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/25 15:40:24 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/08 12:36:42 by gmordele         ###   ########.fr       */
+/*   Created: 2017/06/08 10:51:43 by gmordele          #+#    #+#             */
+/*   Updated: 2017/06/08 11:05:11 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <termios.h>
-#include <term.h>
-#include <unistd.h>
+#include <stdlib.h>
 #include "ft_select.h"
 
-void	restore_term(t_info *info)
+void	clean_exit(t_info *info)
 {
-	char	*str;
-
-	str = tgetstr("te", NULL);
-	tputs(str, info->row, tputc);
-	str = tgetstr("ve", NULL);
-	tputs(str, 1, tputc);
-	if (info->is_saved)
-		if (tcsetattr(info->fd, TCSANOW, &info->saved_termios) < 0)
-			err_exit(info, "Error tcsetattr");
+	restore_term(info);
+	free_args(info);
+	exit(EXIT_SUCCESS);
 }

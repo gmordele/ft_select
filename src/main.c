@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 23:15:41 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/07 18:06:22 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/08 12:44:32 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,8 @@ static void		init_info(t_info *info)
 	info->exit = 0;
 	info->is_saved = 0;
 	get_valid_fd(info);
-	get_winsize(info);
 	get_len(info);
-	info->words_row = (info->len <= info->col) ?
-		1 + (info->col - info->len) / (info->len + 1) : 0;
-	info->words_col	= (info->row > 2) ? info->row - 2 : 0;
-	info->words_page = info->words_col * info->words_row;
+	get_winsize(info);
 	info->cur_pos = 0;
 	get_n_args(info);
 	info->selected_args = 0;
@@ -79,24 +75,20 @@ int				main(int argc, char *argv[])
 {
 	t_info info;
 
-	setlocale(LC_ALL, "");
 	if (argc < 2 || argc >= 10000)
 	{
 		ft_dprintf(2, "Error arguments\n");	
 		exit(EXIT_FAILURE);
 	}
+	setlocale(LC_ALL, "");
 	make_arg_lst(&info, argc, argv);
 	init_info(&info);
 	sta_info(&info);
-	/*
-	int test = ttyslot();
-	ft_dprintf(2, "%s\n", ttyname(2));
-	ft_dprintf(2, "%d\n", test);
-	*/
 	init_termios(&info);
 	init_termcap(&info);
+	init_signals(&info);
 	print_scr(&info);
 	main_loop(&info);
-	restore_term(&info);
+	clean_exit(&info);
 	return (0);
 }

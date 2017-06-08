@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   restore_term.c                                     :+:      :+:    :+:   */
+/*   free_args.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/25 15:40:24 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/08 12:36:42 by gmordele         ###   ########.fr       */
+/*   Created: 2017/06/08 10:56:30 by gmordele          #+#    #+#             */
+/*   Updated: 2017/06/08 11:05:26 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <termios.h>
-#include <term.h>
-#include <unistd.h>
+#include <stdlib.h>
 #include "ft_select.h"
 
-void	restore_term(t_info *info)
+void	free_args(t_info *info)
 {
-	char	*str;
+	t_arg_lst	*p1;
+	t_arg_lst	*p2;
 
-	str = tgetstr("te", NULL);
-	tputs(str, info->row, tputc);
-	str = tgetstr("ve", NULL);
-	tputs(str, 1, tputc);
-	if (info->is_saved)
-		if (tcsetattr(info->fd, TCSANOW, &info->saved_termios) < 0)
-			err_exit(info, "Error tcsetattr");
+	if (info == NULL || info->arg_lst == NULL)
+		err_exit(info, "Error free_args");
+	p1 = info->arg_lst->next;
+	info->arg_lst = NULL;
+	while (p1->rank != 0)
+	{
+		p2 = p1->next;
+		free(p1);
+		p1 = p2;
+	}
+	free(p1);
 }

@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   restore_term.c                                     :+:      :+:    :+:   */
+/*   clean_scr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/25 15:40:24 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/08 12:36:42 by gmordele         ###   ########.fr       */
+/*   Created: 2017/06/08 12:46:21 by gmordele          #+#    #+#             */
+/*   Updated: 2017/06/08 12:48:26 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <termios.h>
-#include <term.h>
-#include <unistd.h>
 #include "ft_select.h"
+#include "libft.h"
 
-void	restore_term(t_info *info)
+void	clean_scr(t_info *info)
 {
-	char	*str;
+	int i;
+	int lim;
 
-	str = tgetstr("te", NULL);
-	tputs(str, info->row, tputc);
-	str = tgetstr("ve", NULL);
-	tputs(str, 1, tputc);
-	if (info->is_saved)
-		if (tcsetattr(info->fd, TCSANOW, &info->saved_termios) < 0)
-			err_exit(info, "Error tcsetattr");
+	ft_dprintf(info->fd, "{BG_BLA}");
+	lim = info->row * info->col;
+	i = 0;
+	while (i++ < lim)
+		ft_dprintf(info->fd, " ");
+	ft_dprintf(info->fd, "{RES}");
 }

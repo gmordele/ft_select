@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 23:18:35 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/07 11:59:26 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/08 12:47:21 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,5 +108,9 @@ void			search_for_next(t_info *info);
 void			handle_search_next(t_info *info);
 void			handle_key_all(t_info *info);
 void			get_valid_fd(t_info *info);
+void			init_signals(t_info *info);
+void			clean_exit(t_info *info);
+void			free_args(t_info *info);
+void			clean_scr(t_info *info);
 
 #endif

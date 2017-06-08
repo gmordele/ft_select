@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 23:15:41 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/08 17:42:43 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/08 17:53:18 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,8 +116,6 @@ int				main(int argc, char *argv[])
 	restore_term(&info);
 	if (info.print)
 		print_args(&info);
-	else
-		ft_printf("fail\n");
 	free_args(&info);
 	return (0);
 }

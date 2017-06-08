@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/08 10:38:21 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/08 17:34:19 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/08 18:56:07 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,16 @@ static void		sigcont_handler(int sig)
 	t_info *info;
 
 	(void)sig;
-	info = sta_info(NULL);
-	if (signal(SIGTSTP, sigstp_handler) == SIG_ERR)	
-		err_exit(info, "Error signal");
-	init_termios(info);
-	init_termcap(info);
-	get_winsize(info);
-	print_scr(info);
+	if (isatty(1))
+	{
+		info = sta_info(NULL);
+		if (signal(SIGTSTP, sigstp_handler) == SIG_ERR)	
+			err_exit(info, "Error signal");
+		init_termios(info);
+		init_termcap(info);
+		get_winsize(info);
+		print_scr(info);
+	}
 }
 
 static void		sigwinch_handler(int sig)

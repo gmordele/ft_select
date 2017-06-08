@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 17:07:34 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/07 09:56:05 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/08 17:32:09 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@ static void	handle_key_normal(t_info *info, int key)
 		switch_search_mode(info);
 	else if (key == KEY_CTRL_A)
 		handle_key_all(info);
+	else if (key == KEY_RETURN)
+	{
+		info->print = 1;
+		info->exit = 1;
+	}
 }
 
 static void	handle_key_search(t_info *info, int key)

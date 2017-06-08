@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/08 10:38:21 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/08 17:21:58 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/08 17:34:19 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,17 @@ static void		sigstp_handler(int sig)
 	char	susp;
 
 	(void)sig;
-	info = sta_info(NULL);
-	susp = info->saved_termios.c_cc[VSUSP];
-	if (signal(SIGTSTP, SIG_DFL) == SIG_ERR)	
-		err_exit(info, "Error signal");
-	ioctl(0, TIOCSTI, &susp);
-	restore_term(info);
-	if (signal(SIGTSTP, SIG_DFL) == SIG_ERR)	
-		err_exit(info, "Error signal");
+	if (isatty(1))
+	{
+		info = sta_info(NULL);
+		susp = info->saved_termios.c_cc[VSUSP];
+		if (signal(SIGTSTP, SIG_DFL) == SIG_ERR)	
+			err_exit(info, "Error signal");
+		ioctl(0, TIOCSTI, &susp);
+		restore_term(info);
+		if (signal(SIGTSTP, SIG_DFL) == SIG_ERR)	
+			err_exit(info, "Error signal");
+	}
 }
 
 static void		sigcont_handler(int sig)

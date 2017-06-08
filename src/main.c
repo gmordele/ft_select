@@ -6,7 +6,7 @@
 /*   By: gmordele <gmordele@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 23:15:41 by gmordele          #+#    #+#             */
-/*   Updated: 2017/06/08 12:44:32 by gmordele         ###   ########.fr       */
+/*   Updated: 2017/06/08 17:42:43 by gmordele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "ft_select.h"
 #include "libft.h"
 #include "locale.h"
-
 
 static  void	main_loop(t_info *info)
 {
@@ -27,11 +26,6 @@ static  void	main_loop(t_info *info)
 	{
 		if ((n = read(info->fd, buf, 1024)) < 0)
 			err_exit(info, "Error read");
-		/*
-		for (int i = 0; i < n; ++i)
-			ft_dprintf(info->fd, "%d ", buf[i]);
-		ft_dprintf(info->fd, "\n");
-		//*/
 		key = pressed_key(n, buf);
 		handle_key(info, key);
 	}
@@ -69,6 +63,36 @@ static void		init_info(t_info *info)
 	if((info->search_buf = (char *)malloc(sizeof(char) * info->len)) == NULL)
 		err_exit(info, "Error malloc");
 	ft_bzero(info->search_buf, info->len);
+	info->print = 0;
+}
+
+static void		print_args(t_info *info)
+{
+	t_arg_lst	*arg_lst;
+	int			first;
+
+	if (info->arg_lst == NULL)
+		err_exit(info, "Error print_args");
+	arg_lst = info->arg_lst;
+	first = 1;
+	if (arg_lst->state == SELECTED)
+	{
+		first = 0;
+		ft_printf("%s", arg_lst->arg);
+	}
+	arg_lst = arg_lst->next;
+	while (arg_lst->rank != 0)
+	{
+		if (arg_lst->state == SELECTED)
+		{
+			if (first == 1)
+				first = 0;
+			else
+				ft_printf(" ", arg_lst->arg);
+			ft_printf("%s", arg_lst->arg);
+		}
+		arg_lst = arg_lst->next;
+	}
 }
 
 int				main(int argc, char *argv[])
@@ -89,6 +113,11 @@ int				main(int argc, char *argv[])
 	init_signals(&info);
 	print_scr(&info);
 	main_loop(&info);
-	clean_exit(&info);
+	restore_term(&info);
+	if (info.print)
+		print_args(&info);
+	else
+		ft_printf("fail\n");
+	free_args(&info);
 	return (0);
 }
